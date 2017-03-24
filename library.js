@@ -13,6 +13,7 @@
 
 	var constants = Object.freeze({
 		'name': "wechat",
+		'display_name': "微信",
 		'plugin_name': "sso-auth-wechat",
 		'admin': {
 			'route': '/plugins/sso-auth-wechat',
@@ -63,6 +64,7 @@
 
 				strategies.push({
 					name: constants.name,
+					displayName: constants.display_name,
 					url: '/auth/'+constants.name,
 					callbackURL: '/auth/'+constants.name+'/callback',
 					icon: constants.admin.icon,
@@ -75,15 +77,15 @@
 	};
 
 	OAuth.getAssociation = function (data, callback) {
-		user.getUserField(data.uid, constants.name+':open_id', function (err, weiboId) {
+		user.getUserField(data.uid, constants.name+':open_id', function (err, open_id) {
 			if (err) {
 				return callback(err, data);
 			}
 
-			if (weiboId) {
+			if (open_id) {
 				data.associations.push({
 					associated: true,
-					url: 'https://weibo.com/u/' + weiboId,
+					url: 'https://weixin.com/u/' + open_id,
 					name: constants.name,
 					icon: constants.admin.icon
 				});
