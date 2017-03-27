@@ -39,7 +39,7 @@
 	OAuth.getStrategy = function (strategies, callback) {
 		meta.settings.get(constants.plugin_name, function (err, settings) {
 			OAuth.settings = settings;
-			if (!err && settings['key'] && settings['secret']) {
+			if (!err && settings['id'] && settings['secret']) {
 				passport.use(new passportWechat({
 					appId: settings['id'],
 					clientSecret: settings['secret'],
