@@ -41,8 +41,8 @@
 			OAuth.settings = settings;
 			if (!err && settings['id'] && settings['secret']) {
 				passport.use(new passportWechat({
-					appId: settings['id'],
-					clientSecret: settings['secret'],
+					appID: settings['id'],
+					appSecret: settings['secret'],
 					callbackURL: nconf.get('url') + '/auth/'+constants.name+'/callback',
 					passReqToCallback: true
 				}, function (req, accessToken, refreshToken, profile, expires_in, done) {
